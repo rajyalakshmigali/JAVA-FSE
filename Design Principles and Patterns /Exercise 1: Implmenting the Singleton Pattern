@@ -1,0 +1,21 @@
+class Singleton {
+    private static Singleton obj = new Singleton();
+    private Singleton(){
+        System.out.println("Singleton Object is created");
+    }
+    public static Singleton getInstance(){
+        return obj;
+    }
+    public void message(String text){
+        System.out.println(text);
+    }
+}
+public class SingletonMain {
+    public static void main(String[] args){
+        Singleton s1 = Singleton.getInstance();
+        Singleton s2 = Singleton.getInstance();
+        s1.message("Hello");
+        s2.message("Singleton class");
+        System.out.println(s1==s2);
+    }
+}
