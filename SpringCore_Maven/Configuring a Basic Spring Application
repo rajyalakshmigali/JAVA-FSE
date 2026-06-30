@@ -1,0 +1,90 @@
+App.java Class
+
+package org.example;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+    public static void main(String[] args) {
+
+        ApplicationContext context =
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+
+        Student student = (Student) context.getBean("student");
+
+        student.display();
+    }
+}
+
+Student.java Class
+
+package org.example;
+
+public class Student {
+
+    private String name;
+
+    public Student() {
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void display() {
+        System.out.println("Student Name : " + name);
+    }
+}
+
+applicationContext.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="student" class="org.example.Student">
+
+        <property name="name" value="Rajya Lakshmi Gali"/>
+
+    </bean>
+
+</beans>
+
+pom.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>SpringBasicApp</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+        <!-- Spring Context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>6.1.8</version>
+        </dependency>
+
+    </dependencies>
+
+</project>
